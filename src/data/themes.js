@@ -1992,11 +1992,11 @@ export default [
             "label": "Taj Mahal"
           },
           {
-            "imageSrc": "/legacy/images/Opéra-de-Sydney.jpg",
+            "imageSrc": "/legacy/images/Opéra-de-Sydney.jpg",
             "label": "Opéra de Sydney"
           },
           {
-            "imageSrc": "/legacy/images/Colisée.jpg",
+            "imageSrc": "/legacy/images/Colisée.jpg",
             "label": "Colisée"
           },
           {
@@ -2040,7 +2040,7 @@ export default [
         "promptAlt": "Animal à identifier",
         "answers": [
           {
-            "imageSrc": "/legacy/images/Panda-géant.jpg",
+            "imageSrc": "/legacy/images/Panda-géant.jpg",
             "label": "Panda géant"
           },
           {
@@ -2122,7 +2122,7 @@ export default [
             "label": "Italie"
           },
           {
-            "imageSrc": "/legacy/images/Grèce.jpg",
+            "imageSrc": "/legacy/images/Grèce.jpg",
             "label": "Grèce"
           },
           {
@@ -2174,15 +2174,15 @@ export default [
             "label": "Basilique Saint-Pierre"
           },
           {
-            "imageSrc": "/legacy/images/Cathédrale Notre-Dame.jpg",
+            "imageSrc": "/legacy/images/Cathédrale Notre-Dame.jpg",
             "label": "Cathédrale Notre-Dame"
           },
           {
-            "imageSrc": "/legacy/images/Sagrada Família.jpg",
+            "imageSrc": "/legacy/images/Sagrada Família.jpg",
             "label": "Sagrada Família"
           },
           {
-            "imageSrc": "/legacy/images/Mosquée bleue.jpg",
+            "imageSrc": "/legacy/images/Mosquée bleue.jpg",
             "label": "Mosquée bleue"
           }
         ],
@@ -2260,7 +2260,7 @@ export default [
             "label": "Clarinette"
           },
           {
-            "imageSrc": "/legacy/images/Flûte traversière.jpg",
+            "imageSrc": "/legacy/images/Flûte traversière.jpg",
             "label": "Flûte traversière"
           }
         ],
@@ -2282,7 +2282,7 @@ export default [
             "label": "Chutes du Niagara"
           },
           {
-            "imageSrc": "/legacy/images/Désert du Sahara.jpg",
+            "imageSrc": "/legacy/images/Désert du Sahara.jpg",
             "label": "Désert du Sahara"
           },
           {
@@ -2312,7 +2312,7 @@ export default [
             "label": "Taxi new-yorkais"
           },
           {
-            "imageSrc": "/legacy/images/Métro parisien.jpg",
+            "imageSrc": "/legacy/images/Métro parisien.jpg",
             "label": "Métro parisien"
           }
         ],
@@ -2334,7 +2334,7 @@ export default [
             "label": "Kayak"
           },
           {
-            "imageSrc": "/legacy/images/Plongée.jpg",
+            "imageSrc": "/legacy/images/Plongée.jpg",
             "label": "Plongée"
           },
           {
@@ -2416,7 +2416,7 @@ export default [
             "label": "Petra"
           },
           {
-            "imageSrc": "/legacy/images/Acropole d'Athènes.jpg",
+            "imageSrc": "/legacy/images/Acropole d'Athènes.jpg",
             "label": "Acropole d'Athènes"
           }
         ],
@@ -2434,7 +2434,7 @@ export default [
             "label": "Macaron"
           },
           {
-            "imageSrc": "/legacy/images/Éclair.jpg",
+            "imageSrc": "/legacy/images/Éclair.jpg",
             "label": "Éclair"
           },
           {
@@ -2460,7 +2460,7 @@ export default [
             "label": "Impressionnisme"
           },
           {
-            "imageSrc": "/legacy/images/Surréalisme.jpg",
+            "imageSrc": "/legacy/images/Surréalisme.jpg",
             "label": "Surréalisme"
           },
           {
@@ -2482,11 +2482,11 @@ export default [
         "promptAlt": "Symbole national à identifier",
         "answers": [
           {
-            "imageSrc": "/legacy/images/Statue de la Liberté.jpg",
+            "imageSrc": "/legacy/images/Statue de la Liberté.jpg",
             "label": "Statue de la Liberté"
           },
           {
-            "imageSrc": "/legacy/images/Christ Rédempteur.jpg",
+            "imageSrc": "/legacy/images/Christ Rédempteur.jpg",
             "label": "Christ Rédempteur"
           },
           {
