@@ -1,0 +1,109 @@
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(31, 42, 51, 0.1);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 8px;
+}
+
+html.dark-mode .stat-card {
+  background: #2a2a2a;
+  border-color: rgba(77, 184, 168, 0.2);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.stats-list {
+  display: grid;
+  gap: 12px;
+}
+
+.stats-item {
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(31, 42, 51, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 10px;
+}
+
+html.dark-mode .stats-item {
+  background: #2a2a2a;
+  border-color: rgba(77, 184, 168, 0.2);
+}
+
+.stats-question {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.stats-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.stats-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(31, 42, 51, 0.08);
+  color: var(--color-muted);
+}
+
+.stats-badge--easy {
+  background: rgba(42, 157, 143, 0.15);
+  color: var(--color-secondary);
+}
+
+.stats-badge--medium {
+  background: rgba(242, 193, 78, 0.2);
+  color: #8a5b07;
+}
+
+.stats-badge--hard {
+  background: rgba(230, 57, 70, 0.15);
+  color: var(--color-danger);
+}
+
+.stats-badge--good {
+  background: rgba(47, 158, 68, 0.16);
+  color: var(--color-success);
+}
+
+.stats-badge--bad {
+  background: rgba(230, 57, 70, 0.12);
+  color: var(--color-danger);
+}
+
+.stats-badge--timeout {
+  background: rgba(31, 42, 51, 0.12);
+  color: var(--color-muted);
+}
+
+.stats-time {
+  font-weight: 600;
+  color: var(--color-ink);
+}

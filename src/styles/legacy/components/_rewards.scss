@@ -1,0 +1,72 @@
+.rewards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.reward-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(31, 42, 51, 0.1);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+html.dark-mode .reward-card {
+  background: #2a2a2a;
+  border-color: rgba(77, 184, 168, 0.2);
+}
+
+.reward-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: rgba(42, 157, 143, 0.18);
+  color: var(--color-secondary);
+}
+
+.reward-card__title {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.reward-card__desc {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.reward-card__status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+.reward-card--earned {
+  border-color: rgba(47, 158, 68, 0.35);
+  background: rgba(47, 158, 68, 0.12);
+}
+
+html.dark-mode .reward-card--earned {
+  background: rgba(47, 158, 68, 0.18);
+}
+
+.reward-card--earned .reward-card__icon {
+  background: rgba(47, 158, 68, 0.18);
+  color: var(--color-success);
+}
+
+.reward-card--earned .reward-card__status {
+  color: var(--color-success);
+}
+
+.reward-card--locked {
+  opacity: 0.8;
+}

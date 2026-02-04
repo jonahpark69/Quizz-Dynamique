@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Legacy placeholder image">
+  <rect width="640" height="360" fill="#e5e7eb" />
+  <rect x="20" y="20" width="600" height="320" fill="#f9fafb" stroke="#9ca3af" stroke-dasharray="8 6" />
+  <text x="320" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#374151">
+    Legacy image placeholder
+  </text>
+  <text x="320" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#6b7280">
+    /legacy/images/mon-image.png
+  </text>
+</svg>

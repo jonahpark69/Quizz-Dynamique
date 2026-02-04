@@ -1,0 +1,42 @@
+:root {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "DM Sans", "Gill Sans", sans-serif;
+  --color-bg: #f4efe7;
+  --color-bg-accent: #fdebd2;
+  --color-surface: #fffdf8;
+  --color-surface-strong: #ffffff;
+  --color-ink: #1f2a33;
+  --color-muted: #55606b;
+  --color-primary: #ff6b4a;
+  --color-primary-dark: #e24f30;
+  --color-secondary: #2a9d8f;
+  --color-accent: #f2c14e;
+  --color-success: #2f9e44;
+  --color-danger: #e63946;
+  --radius-lg: 24px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-lg: 0 32px 70px rgba(31, 42, 51, 0.15);
+  --shadow-md: 0 18px 32px rgba(31, 42, 51, 0.12);
+  --shadow-sm: 0 8px 18px rgba(31, 42, 51, 0.08);
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}
+
+html.dark-mode {
+  --color-bg: #111111;
+  --color-bg-accent: #1a1a1a;
+  --color-surface: #2a2a2a;
+  --color-surface-strong: #2d2d2d;
+  --color-ink: #f0f0f0;
+  --color-muted: #b0b0b0;
+  --color-primary: #ff8c6b;
+  --color-primary-dark: #ff6b4a;
+  --color-secondary: #4db8a8;
+  --color-accent: #ffd966;
+  --color-success: #51d273;
+  --color-danger: #ff6b7a;
+  --shadow-lg: 0 32px 70px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 18px 32px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
