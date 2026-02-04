@@ -1,46 +1,29 @@
 <script setup>
 defineProps({
-  mode: {
-    type: String,
-    default: 'question'
-  },
-  canNext: {
+  canGoBack: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  canGoNext: {
+    type: Boolean,
+    default: false,
+  },
+  isLastQuestion: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-defineEmits(['next', 'restart', 'home'])
+const emit = defineEmits(['previous', 'next'])
 </script>
 
 <template>
-  <div class="quiz-controls">
-    <template v-if="mode === 'question'">
-      <button
-        type="button"
-        class="quiz-controls__button quiz-controls__button--primary"
-        :disabled="!canNext"
-        @click="$emit('next')"
-      >
-        Suivant
-      </button>
-    </template>
-
-    <template v-else-if="mode === 'result'">
-      <button
-        type="button"
-        class="quiz-controls__button quiz-controls__button--secondary"
-        @click="$emit('home')"
-      >
-        Accueil
-      </button>
-      <button
-        type="button"
-        class="quiz-controls__button quiz-controls__button--primary"
-        @click="$emit('restart')"
-      >
-        Rejouer
-      </button>
-    </template>
+  <div class="controls">
+    <button class="button button-secondary" type="button" :disabled="!canGoBack" @click="emit('previous')">
+      Retour
+    </button>
+    <button class="button button-primary" type="button" :disabled="!canGoNext" @click="emit('next')">
+      {{ isLastQuestion ? 'Terminer' : 'Suivant' }}
+    </button>
   </div>
 </template>

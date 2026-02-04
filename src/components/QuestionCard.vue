@@ -1,31 +1,38 @@
 <script setup>
-import { computed } from 'vue'
-import { vAnimateOnTextChange } from '../directives/animateOnTextChange'
-
 const props = defineProps({
   question: {
     type: Object,
-    default: null
+    required: true,
   },
-  currentIndex: {
-    type: Number,
-    default: 0
+  selectedValue: {
+    type: String,
+    default: '',
   },
-  total: {
-    type: Number,
-    default: 0
-  }
 })
 
-const questionText = computed(() => props.question?.text || props.question?.prompt || '')
+const emit = defineEmits(['answer'])
+
+const handleAnswer = (value) => {
+  emit('answer', value)
+}
 </script>
 
 <template>
-  <article v-if="question" class="question-card" :data-theme="question.theme || ''">
-    <p class="question-card__index">Question {{ currentIndex + 1 }} / {{ total }}</p>
-    <h2 v-animate-on-text-change="questionText" class="question-card__title">
-      {{ questionText }}
-    </h2>
-    <slot />
+  <article class="card">
+    <p class="quiz-theme">{{ props.question.theme }}</p>
+    <h2>{{ props.question.question }}</h2>
+
+    <div class="answer-list">
+      <button
+        v-for="answer in props.question.answers"
+        :key="answer.value"
+        class="button button-secondary answer-button"
+        :class="{ selected: props.selectedValue === answer.value }"
+        type="button"
+        @click="handleAnswer(answer.value)"
+      >
+        {{ answer.label }}
+      </button>
+    </div>
   </article>
 </template>
