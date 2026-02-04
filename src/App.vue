@@ -1,5 +1,18 @@
 <script setup>
+import { ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+
+const legacyImageSrc = ref('/legacy/images/mon-image.png')
+const legacyAudioSrc = ref('/legacy/audio/mon-audio.mp3')
+const audioMissing = ref(false)
+
+const useImagePlaceholder = () => {
+  legacyImageSrc.value = '/legacy/images/placeholder.svg'
+}
+
+const showAudioPlaceholder = () => {
+  audioMissing.value = true
+}
 </script>
 
 <template>
@@ -12,6 +25,23 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+
+  <section class="legacy-preview legacy-debug">
+    <h2>Legacy assets test</h2>
+    <img
+      class="legacy-media"
+      :src="legacyImageSrc"
+      alt="Legacy image test"
+      @error.once="useImagePlaceholder"
+    />
+    <audio class="legacy-media" controls preload="none" @error="showAudioPlaceholder">
+      <source :src="legacyAudioSrc" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <p v-if="audioMissing" class="legacy-note">
+      Placeholder: add your file at /public/legacy/audio/mon-audio.mp3
+    </p>
+  </section>
 </template>
 
 <style scoped>

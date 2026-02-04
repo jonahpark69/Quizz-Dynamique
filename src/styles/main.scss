@@ -1,3 +1,5 @@
+@use './legacy/legacy';
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,4 +8,22 @@ body {
 
 h1 {
   color: #0f766e;
+}
+
+.legacy-preview {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.legacy-media {
+  width: min(100%, 420px);
+  display: block;
+  margin: 0.75rem auto;
+}
+
+.legacy-note {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
 }

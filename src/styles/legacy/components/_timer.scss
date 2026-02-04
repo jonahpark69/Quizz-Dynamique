@@ -1,0 +1,14 @@
+.timer {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(31, 42, 51, 0.12);
+  font-weight: 600;
+  color: var(--color-danger);
+  box-shadow: var(--shadow-sm);
+}
+
+.timer--global {
+  color: var(--color-secondary);
+  border-color: rgba(42, 157, 143, 0.35);
+}
