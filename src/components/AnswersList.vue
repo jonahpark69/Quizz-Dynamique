@@ -9,117 +9,113 @@ const props = defineProps({
     default: () => []
   },
   selectedIndex: {
-    type: [Number, null],
+    type: Number,
     default: null
+  },
+  correctIndex: {
+    type: Number,
+    default: -1
   },
   locked: {
     type: Boolean,
     default: false
   },
-  correctAnswerIndex: {
-    type: Number,
-    default: -1
+  imageMode: {
+    type: Boolean,
+    default: false
   }
 })
 
 const emit = defineEmits(['select'])
-const imageLoadingByKey = ref({})
-
-function answerKey(answer, index) {
-  return `${index}-${answer?.value ?? answer?.id ?? answer?.label ?? 'answer'}`
-}
+const loadingByIndex = ref({})
 
 function hasImage(answer) {
-  return typeof answer?.imageSrc === 'string' && answer.imageSrc.length > 0
+  return answer && typeof answer === 'object' && typeof answer.imageSrc === 'string'
 }
 
-function resolveImageSrc(imageSrc) {
-  if (!imageSrc) {
+function answerLabel(answer) {
+  if (typeof answer === 'string') {
+    return answer
+  }
+  return answer?.label || 'Réponse'
+}
+
+function normalizeImagePath(src) {
+  if (!src) {
     return ''
   }
 
-  if (/^(https?:\/\/|data:|blob:)/.test(imageSrc)) {
-    return imageSrc
+  if (src.startsWith('/legacy/images/') || /^(https?:|data:|blob:)/.test(src)) {
+    return src
   }
 
-  if (imageSrc.startsWith('/legacy/images/')) {
-    return imageSrc
-  }
-
-  const normalized = imageSrc
-    .replace(/^\.?\//, '')
-    .replace(/^legacy\/images\//, '')
-    .replace(/^images\//, '')
-
+  let normalized = src.replace(/\\/g, '/')
+  normalized = normalized.replace(/^\.?\//, '')
+  normalized = normalized.replace(/^\.\.\//g, '')
+  normalized = normalized.replace(/^assets\/images\//, '')
+  normalized = normalized.replace(/^quiz-image\//, '')
+  normalized = normalized.replace(/^images\//, '')
   return `/legacy/images/${normalized}`
 }
 
-function markImageLoaded(key) {
-  imageLoadingByKey.value = {
-    ...imageLoadingByKey.value,
-    [key]: false
+function markLoaded(index) {
+  loadingByIndex.value = {
+    ...loadingByIndex.value,
+    [index]: false
   }
 }
 
-function select(index) {
+function onSelect(index) {
   emit('select', index)
 }
 
 watch(
   () => props.answers,
-  (nextAnswers) => {
-    const loadingState = {}
-    nextAnswers.forEach((answer, index) => {
-      const key = answerKey(answer, index)
-      loadingState[key] = hasImage(answer)
+  (answers) => {
+    const nextLoading = {}
+    answers.forEach((answer, index) => {
+      nextLoading[index] = hasImage(answer)
     })
-    imageLoadingByKey.value = loadingState
+    loadingByIndex.value = nextLoading
   },
   { immediate: true }
 )
 </script>
 
 <template>
-  <ul v-stagger-answers="{ step: 70 }" class="answers-list">
-    <li
-      v-for="(answer, index) in answers"
-      :key="answerKey(answer, index)"
-      class="answers-list__item"
-    >
+  <div class="answers" :class="{ 'answers--image': imageMode }">
+    <div v-stagger-answers="{ step: 70 }" class="answers-list-wrapper">
       <button
+        v-for="(answer, index) in answers"
+        :key="`${index}-${answerLabel(answer)}`"
         v-ripple
-        type="button"
-        class="answers-list__button"
+        class="answer-btn"
         :class="{
-          'is-selected': selectedIndex === index,
-          'is-correct': locked && correctAnswerIndex === index,
-          'is-wrong':
-            locked &&
-            selectedIndex === index &&
-            correctAnswerIndex !== -1 &&
-            selectedIndex !== correctAnswerIndex
+          'answer-btn--image': hasImage(answer),
+          'is-loading': hasImage(answer) && loadingByIndex[index],
+          correct: locked && index === correctIndex,
+          wrong: locked && selectedIndex === index && index !== correctIndex
         }"
+        type="button"
         :disabled="locked"
-        @click="select(index)"
+        @click="onSelect(index)"
       >
-        <span v-if="hasImage(answer)" class="answers-list__image-wrap">
-          <span
-            v-if="imageLoadingByKey[answerKey(answer, index)]"
-            class="answers-list__image-loader"
-          />
+        <template v-if="hasImage(answer)">
           <img
-            :src="resolveImageSrc(answer.imageSrc)"
-            :alt="answer.label || `Reponse ${index + 1}`"
-            class="answers-list__image"
+            :src="normalizeImagePath(answer.imageSrc)"
+            :alt="answerLabel(answer)"
             loading="lazy"
-            @load="markImageLoaded(answerKey(answer, index))"
-            @error="markImageLoaded(answerKey(answer, index))"
+            decoding="async"
+            fetchpriority="low"
+            @load="markLoaded(index)"
+            @error="markLoaded(index)"
           />
-        </span>
-        <span class="answers-list__label">
-          {{ answer.label || answer.text || `Reponse ${index + 1}` }}
-        </span>
+          <span class="sr-only">{{ answerLabel(answer) }}</span>
+        </template>
+        <template v-else>
+          {{ answerLabel(answer) }}
+        </template>
       </button>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>

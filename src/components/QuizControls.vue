@@ -1,29 +1,34 @@
 <script setup>
 defineProps({
-  canGoBack: {
+  showNext: {
     type: Boolean,
-    default: false,
+    default: false
   },
-  canGoNext: {
+  canNext: {
     type: Boolean,
-    default: false,
-  },
-  isLastQuestion: {
-    type: Boolean,
-    default: false,
-  },
+    default: false
+  }
 })
 
-const emit = defineEmits(['previous', 'next'])
+const emit = defineEmits(['next', 'restart-theme', 'back-home'])
 </script>
 
 <template>
-  <div class="controls">
-    <button class="button button-secondary" type="button" :disabled="!canGoBack" @click="emit('previous')">
-      Retour
+  <div class="question-nav">
+    <button
+      class="btn btn-secondary"
+      :class="{ hidden: !showNext }"
+      type="button"
+      :disabled="!canNext"
+      @click="emit('next')"
+    >
+      Question suivante
     </button>
-    <button class="button button-primary" type="button" :disabled="!canGoNext" @click="emit('next')">
-      {{ isLastQuestion ? 'Terminer' : 'Suivant' }}
+    <button class="btn btn-secondary btn-restart" type="button" @click="emit('restart-theme')">
+      Recommencer
+    </button>
+    <button class="btn btn-secondary btn-back" type="button" @click="emit('back-home')">
+      Retour
     </button>
   </div>
 </template>

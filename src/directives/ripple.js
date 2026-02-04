@@ -1,11 +1,15 @@
 export const vRipple = {
   mounted(el) {
     const onClick = (event) => {
+      if (el.disabled) {
+        return
+      }
+
       const rect = el.getBoundingClientRect()
       const size = Math.max(rect.width, rect.height)
       const ripple = document.createElement('span')
 
-      ripple.className = 'ripple-effect'
+      ripple.className = 'ripple'
       ripple.style.width = `${size}px`
       ripple.style.height = `${size}px`
       ripple.style.left = `${event.clientX - rect.left - size / 2}px`
@@ -17,7 +21,6 @@ export const vRipple = {
       })
     }
 
-    el.classList.add('ripple-host')
     el.__rippleClickHandler = onClick
     el.addEventListener('click', onClick)
   },

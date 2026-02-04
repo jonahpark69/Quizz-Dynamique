@@ -1,38 +1,21 @@
-export function startTimer({
-  duration,
-  intervalMs = 1000,
-  onTick = () => {},
-  onComplete = () => {}
-}) {
-  let remaining = Math.max(0, Number(duration) || 0)
-  let timerId = null
+export function startTimer(duration, onTick = () => {}, onComplete = () => {}) {
+  let timeLeft = Number.isFinite(duration) ? duration : 0
+  onTick(timeLeft)
 
-  onTick(remaining)
-
-  if (remaining <= 0) {
-    onComplete()
-    return {
-      stop() {}
-    }
-  }
-
-  timerId = window.setInterval(() => {
-    remaining -= 1
-    onTick(Math.max(remaining, 0))
-
-    if (remaining <= 0) {
+  const timerId = window.setInterval(() => {
+    timeLeft -= 1
+    onTick(Math.max(timeLeft, 0))
+    if (timeLeft <= 0) {
       window.clearInterval(timerId)
-      timerId = null
       onComplete()
     }
-  }, intervalMs)
+  }, 1000)
 
-  return {
-    stop() {
-      if (timerId !== null) {
-        window.clearInterval(timerId)
-        timerId = null
-      }
-    }
+  return timerId
+}
+
+export function stopTimer(timerId) {
+  if (timerId) {
+    window.clearInterval(timerId)
   }
 }
