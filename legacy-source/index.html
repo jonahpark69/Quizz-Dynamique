@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quiz Dynamique</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <div class="top-controls">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le mode sombre"></button>
+    </div>
+    <main class="app">
+      <header class="hero">
+        <p class="eyebrow">Quiz interactif</p>
+        <h1>Quiz Dynamique</h1>
+        <p class="lead">
+          Testez vos connaissances et tentez le mode contre-la-montre pour un
+          maximum d'adrénaline.
+        </p>
+      </header>
+
+      <section id="intro-screen" class="card screen">
+      <p class="notice">
+        Choisissez votre rythme, puis lancez la session pour battre votre
+        meilleur score.
+      </p>
+      <div class="theme-picker">
+        <div class="theme-picker__header">
+          <h3 class="theme-title">Choisis un thème</h3>
+          <p class="theme-hint">
+            20 questions par thème, difficulté progressive.
+          </p>
+        </div>
+        <div class="theme-grid" role="radiogroup" aria-label="Choix du thème">
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="general" checked />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Culture générale</span>
+              <span class="theme-card__desc">
+                Faits, records, pays, histoire rapide.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="cinema" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Cinéma &amp; séries</span>
+              <span class="theme-card__desc">
+                Répliques, acteurs, univers, scènes cultes.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="music" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Musique</span>
+              <span class="theme-card__desc">
+                Genres, artistes, décennies, blind test soft.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="gaming" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Jeux vidéo</span>
+              <span class="theme-card__desc">
+                Consoles, licences, mécaniques, personnages.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="sport" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Sport</span>
+              <span class="theme-card__desc">
+                Règles, grands événements, légendes, clubs.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="science" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Science &amp; espace</span>
+              <span class="theme-card__desc">
+                Planètes, corps humain, technologies, fun facts.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="tech" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Technologie &amp; internet</span>
+              <span class="theme-card__desc">
+                Réseaux sociaux, culture web, sécurité.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="food" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Food &amp; cuisine du monde</span>
+              <span class="theme-card__desc">
+                Plats, pays d'origine, ingrédients, traditions.
+              </span>
+            </span>
+          </label>
+          <label class="theme-card">
+            <input type="radio" name="quiz-theme" value="image-quiz" />
+            <span class="theme-card__body">
+              <span class="theme-card__title">Quiz avec image</span>
+              <span class="theme-card__desc">
+                Analyse visuelle et culture générale en images.
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <p class="score-line">
+        <span>Meilleur score :</span>
+        <span id="best-score-value">0</span>
+      </p>
+        <div class="settings">
+          <label class="mode-toggle">
+            <input type="checkbox" id="flashcard-toggle" />
+            <span>
+              Mode Flashcard (entraînement sans timer ni score)
+            </span>
+          </label>
+          <label class="mode-toggle">
+            <input type="checkbox" id="infinite-toggle" />
+            <span>
+              Mode infini (questions aléatoires sans limite)
+            </span>
+          </label>
+          <label class="mode-toggle">
+            <input type="checkbox" id="time-trial-toggle" />
+            <span>Mode contre-la-montre (temps global)</span>
+          </label>
+          <label class="mode-config">
+            <span>
+              Durée du mode contre-la-montre (secondes)
+            </span>
+            <input
+              type="number"
+              id="time-trial-duration"
+              min="30"
+              max="900"
+              value="240"
+            />
+          </label>
+        </div>
+        <button id="start-btn" class="btn btn-primary">
+          Commencer le quiz
+        </button>
+      </section>
+
+      <section id="question-screen" class="card screen" style="display: none">
+        <div id="progress" class="progress">
+          <div class="progress__meta">
+            <span>
+              <span>Question</span>
+              <span id="current-question-index"></span> /
+              <span id="total-questions"></span>
+            </span>
+            <span id="theme-label" class="theme-label"></span>
+          </div>
+          <div class="progress__bar">
+            <span id="progress-fill" class="progress__fill"></span>
+          </div>
+        </div>
+        <div class="meta-row">
+          <div id="global-timer-div" class="timer timer--global" style="display: none">
+            <span>Temps global restant :</span>
+            <span id="global-time-left">0</span>
+            <span>s</span>
+          </div>
+          <div id="timer-div" class="timer">
+            <span>Temps restant :</span>
+            <span id="time-left">0</span>
+            <span>s</span>
+          </div>
+        </div>
+        <div id="question-media" class="question-media hidden">
+          <img id="question-image" src="" alt="" />
+        </div>
+        <p id="question-text" class="question"></p>
+        <div id="question-actions" class="question-actions">
+          <div class="question-actions__group">
+            <button
+              id="play-audio-btn"
+              class="btn btn-secondary btn-audio"
+              type="button"
+             
+            >
+              Lecture
+            </button>
+            <span id="audio-status" class="audio-status" aria-live="polite"></span>
+          </div>
+          <div class="question-actions__group">
+            <button
+              id="hint-btn"
+              class="btn btn-secondary btn-hint hidden"
+              type="button"
+              aria-controls="hint-box"
+              aria-expanded="false"
+             
+            >
+              Indice
+            </button>
+            <span id="hint-status" class="hint-status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div id="hint-box" class="hint-box hidden" aria-live="polite"></div>
+        <div id="answers" class="answers"></div>
+        <div class="question-nav">
+          <button id="next-btn" class="btn btn-secondary hidden">
+            Question suivante
+          </button>
+          <button
+            id="restart-theme-btn"
+            class="btn btn-secondary btn-restart"
+            type="button"
+           
+          >
+            Recommencer
+          </button>
+          <button
+            id="back-home-btn"
+            class="btn btn-secondary btn-back"
+            type="button"
+           
+          >
+            Retour
+          </button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="card screen" style="display: none">
+        <h2 class="result-title">Résultat final</h2>
+        <div class="result-scores">
+          <p id="score-text" class="score-final"></p>
+          <p class="score-line">
+            <span>Meilleur score :</span>
+            <span id="best-score-end">0</span>
+          </p>
+        </div>
+        <div class="result-actions">
+          <button id="restart-btn" class="btn btn-primary">
+            Recommencer
+          </button>
+          <button id="tweet-btn" class="btn btn-secondary">
+            Partager sur Twitter
+          </button>
+        </div>
+      </section>
+
+      <section id="rewards-screen" class="card screen" style="display: none">
+        <h2 class="result-title">Récompenses</h2>
+        <p class="notice">
+          Débloquez des badges selon vos performances pour progresser.
+        </p>
+        <div id="rewards-list" class="rewards-list"></div>
+      </section>
+
+      <section id="stats-screen" class="card screen" style="display: none">
+        <h2>Statistiques détaillées</h2>
+        <p class="notice">
+          Analysez vos forces et vos axes d'amélioration pour progresser.
+        </p>
+        <div class="stats-summary">
+          <div class="stat-card">
+            <span class="stat-label">Bonnes réponses</span>
+            <span id="stats-correct" class="stat-value">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Mauvaises réponses</span>
+            <span id="stats-wrong" class="stat-value">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Temps moyen / question</span>
+            <span id="stats-average-time" class="stat-value">0s</span>
+          </div>
+        </div>
+        <div id="stats-list" class="stats-list"></div>
+      </section>
+
+    </main>
+
+    <script src="../assets/js/quiz.js"></script>
+    <script src="../assets/js/animations.js"></script>
+    <script src="../assets/js/theme-toggle.js"></script>
+  </body>
+</html>

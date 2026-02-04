@@ -1,0 +1,9 @@
+@use './legacy/legacy';
+
+#app {
+  min-height: 100vh;
+}
+
+.answers-list-wrapper {
+  display: contents;
+}
